@@ -19,5 +19,15 @@ fn main(){
     std::io::stdin().read_line(&mut friend_name);
     friend_name.pop();
 
-    println!("Have you seen {} lately?",first_name);
- }
+    println!("Have you seen {} lately?",friend_name);
+
+    println!("Enter m if the friend is male or f if the friend is female:");
+    let mut friend_sex = String::new();
+    std::io::stdin().read_line(&mut friend_name);
+
+    match friend_sex.as_str() {
+        "m" => {println!("If you see {} please ask him to call me.",friend_name);}
+        "f"=> {println!("If you see {} please ask him to call me.",friend_name);}
+        _=> {println!("If you see {} please ask them to call me.",friend_name);}
+    }
+}
