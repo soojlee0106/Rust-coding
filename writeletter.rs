@@ -1,3 +1,6 @@
+use std::i32::MAX;
+use std::i32::MIN;
+
 fn main() {
     println!("Enter the first name of the person you want to write to:");
 
@@ -40,28 +43,41 @@ fn main() {
     std::io::stdin().read_line(&mut age).unwrap();
     let age: i32 = age.trim().parse().unwrap();
 
-    if age <= 0 || age >= 110 {
-        println!("you're kidding!");
-    } else {
-        println!(
-            "I heard you just had a birthday and you are {} years old.",
-            age
-        );
+    assert_eq!(i32::MAX, 2_147_483_647);
+    assert_eq!(i32::MIN, -2_147_483_648);
 
-        if age < 12 {
-            println!("Next year you will be {}.", age + 1);
-        } else if age == 17 {
-            println!("Next year you will be able to vote.");
-        } else if age > 70 {
-            println!("I hope you are enjoying retirement.");
-        } else {
-            println!();
-        };
-    };
+    match age {
+        MIN..=0 | 110..=MAX => {
+            println!("you're kidding!");
+        }
+        _ => {
+            println!(
+                "I heard you just had a birthday and you are {} years old.",
+                age
+            );
 
-    println!("\nI hope you have a great rest of the week and I hope to hear from you soon.");
-    println!("Yours sincerely,");
-    println!();
-    println!();
-    println!("{}", first_name);
+            match age {
+                1..=11 => {
+                    println!("Next year you will be {}.", age + 1);
+                }
+                17 => {
+                    println!("Next year you will be able to vote.");
+                }
+                70..=109 => {
+                    println!("I hope you are enjoying retirement.");
+                }
+                _ => {
+                    println!();
+                }
+            }
+        }
+    }
+
+    println!(
+        "\nI hope you have a great rest of the week and I hope to hear from you soon.
+    \nYours sincerely,
+    \n
+    \n{}",
+        first_name
+    );
 }
