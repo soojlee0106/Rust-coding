@@ -1,11 +1,10 @@
-use std::process::exit;
 use std::vec::Vec;
 
 fn main() {
     let mut vec = Vec::new();
     println!("\nLet's create a vector.");
 
-    while true {
+    loop {
         println!("Enter a number.");
         let mut number = String::new();
         std::io::stdin().read_line(&mut number).unwrap();
@@ -16,6 +15,7 @@ fn main() {
             let min_value = *vec.iter().min().unwrap();
             let max_value = *vec.iter().max().unwrap();
             let elements = vec.len();
+            vec.sort_unstable();
             let sum: i32 = vec.iter().sum();
 
             println!("The smallest so far: {} ", min_value);
@@ -23,7 +23,8 @@ fn main() {
             println!("The number of values: {}", elements);
             println!("The sum of values: {}", sum);
             println!("The entire vector: {:?}", vec);
-            exit(1);
+
+            break;
         };
 
         println!("\nWhat is the unit?");
@@ -52,7 +53,5 @@ fn main() {
             let convnumber = (number as f64) * 2.54 * 12.0;
             vec.push(convnumber as i32);
         }
-
-        vec.sort_unstable();
     }
 }
