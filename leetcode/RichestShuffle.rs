@@ -1,13 +1,8 @@
-use std::cmp::max;
-
 //Richest Customer Wealth
 pub fn maximum_wealth(accounts: Vec<Vec<i32>>) -> i32 {
-    let mut maxWealth = 0;
-    for i in accounts.iter() {
-        let sumWealth = i.iter().sum();
-        maxWealth = max(maxWealth, sumWealth);
-    }
-    maxWealth
+    let sumWealth = accounts.iter().map(|i| i.iter().sum());
+    let maxWealth = sumWealth.max().unwrap();
+    return maxWealth;
 }
 
 //Shuffle the Array
