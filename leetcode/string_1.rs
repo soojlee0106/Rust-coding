@@ -13,7 +13,11 @@ pub fn num_jewels_in_stones(jewels: String, stones: String) -> i32 {
 
 //Maximum words in sentence
 pub fn most_words_found(sentences: Vec<String>) -> i32 {
-    let mut wordvector = sentences.iter().map(|x| x.split(' ').count());
-    let mut mostwords = wordvector.max().unwrap() as i32;
+    if sentences.len() == 0 {
+        return 0;
+    };
+
+    let wordvector = sentences.iter().map(|x| x.split(' ').count());
+    let mostwords = wordvector.max().unwrap() as i32;
     mostwords
 }
