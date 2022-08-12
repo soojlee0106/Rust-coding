@@ -15,10 +15,7 @@ pub fn sort_sentence(s: String) -> String {
 
 //Count Items Matching a Rule
 pub fn count_matches(items: Vec<Vec<String>>, rule_key: String, rule_value: String) -> i32 {
-    let mut matches = 0;
-
     let x: &str = &rule_key;
-
     let i = match x {
         "type" => 0,
         "color" => 1,
@@ -26,11 +23,5 @@ pub fn count_matches(items: Vec<Vec<String>>, rule_key: String, rule_value: Stri
         _ => return 0,
     };
 
-    for j in items {
-        if j[i] == rule_value {
-            matches += 1;
-        }
-    }
-
-    matches
+    items.iter().filter(|j| j[i] == rule_value).count() as i32
 }
