@@ -3,10 +3,10 @@ pub fn find_smallest(array: &[usize]) -> usize {
     let mut smallest = array[0];
     let mut smallest_index = 0;
 
-    for i in 1..array.len() {
-        if array[i] < smallest {
-            smallest = array[i];
-            smallest_index = i;
+    for item in array.iter().enumerate().skip(1) {
+        if array[item.0] < smallest {
+            smallest = array[item.0];
+            smallest_index = item.0;
         }
     }
     smallest_index
