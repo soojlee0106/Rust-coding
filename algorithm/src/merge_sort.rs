@@ -1,3 +1,4 @@
+#[allow(dead_code)]
 fn merge_sort(array: Vec<usize>) -> Vec<usize> {
     if array.len() < 2 {
         //already sorted

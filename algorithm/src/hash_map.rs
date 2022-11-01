@@ -1,5 +1,6 @@
 use std::collections::hash_map::Entry;
 use std::collections::HashMap;
+use std::process::exit;
 
 #[must_use]
 pub fn price_book(item: &str) -> f64 {
@@ -8,11 +9,20 @@ pub fn price_book(item: &str) -> f64 {
     prices.insert("milk", 1.49);
     prices.insert("avocado", 1.49);
 
-    return *prices.get(item).unwrap();
+    let value = if let Some(value) = prices.get(item) {
+        value
+    } else {
+        eprintln!("The item doesn't exist in the price book.");
+        exit(1);
+    };
+    *value
 }
 
 #[must_use]
-pub fn check_vote<'a>(voted: &mut HashMap<&'a str, bool>, name: &'a str) -> String {
+pub fn check_vote<'a, S: ::std::hash::BuildHasher>(
+    voted: &mut HashMap<&'a str, bool, S>,
+    name: &'a str,
+) -> String {
     match voted.entry(name) {
         Entry::Occupied(_) => "Kick them out!".to_string(),
         Entry::Vacant(v) => {
